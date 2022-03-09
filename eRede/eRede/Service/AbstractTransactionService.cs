@@ -23,9 +23,9 @@ namespace eRede.Service
             return store.environment.Endpoint("transactions");
         }
 
-        public TransactionResponse Execute(Method method = Method.POST)
+        public TransactionResponse Execute(Method method = Method.Post)
         {
-            var request = new RestRequest {Method = method, RequestFormat = DataFormat.Json};
+            var request = new RestRequest { Method = method, RequestFormat = DataFormat.Json };
 
             request.AddJsonBody(transaction);
 
@@ -34,16 +34,15 @@ namespace eRede.Service
 
         protected TransactionResponse sendRequest(RestRequest request)
         {
-            var client = new RestClient(getUri())
+            var client = new RestClient(new RestClientOptions(getUri()) { UserAgent = eRede.UserAgent })
             {
-                UserAgent = eRede.UserAgent,
                 Authenticator = new HttpBasicAuthenticator(store.filliation, store.token)
             };
 
             request.AddHeader("Transaction-Response", "brand-return-opened");
 
-            var response = client.Execute(request);
-            var status = (int) response.StatusCode;
+            var response = client.ExecuteAsync(request).Result;
+            var status = (int)response.StatusCode;
 
             if (status < 200 || status >= 400)
             {

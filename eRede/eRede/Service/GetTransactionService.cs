@@ -24,7 +24,7 @@ namespace eRede.Service
 
         public TransactionResponse Execute()
         {
-            var request = new RestRequest {Method = Method.GET};
+            var request = new RestRequest { Method = Method.Get };
 
             return sendRequest(request);
         }

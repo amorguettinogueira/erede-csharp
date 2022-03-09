@@ -10,7 +10,7 @@ namespace eRede.Service
 
         public TransactionResponse Execute()
         {
-            return base.Execute(Method.PUT);
+            return base.Execute(Method.Put);
         }
     }
 }
