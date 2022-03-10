@@ -2,7 +2,7 @@ namespace eRede.Service
 {
     internal class CancelTransactionService : AbstractTransactionService
     {
-        public CancelTransactionService(Store store, Transaction transaction) : base(store, transaction)
+        public CancelTransactionService(Store store, Transaction transaction) : base(store, transaction, null)
         {
         }
 

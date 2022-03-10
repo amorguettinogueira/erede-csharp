@@ -9,11 +9,13 @@ namespace eRede.Service
     {
         private readonly Store store;
         private readonly Transaction transaction;
+        private readonly string userAgent;
 
-        internal AbstractTransactionService(Store store, Transaction transaction)
+        internal AbstractTransactionService(Store store, Transaction transaction, string userAgent)
         {
             this.store = store;
             this.transaction = transaction;
+            this.userAgent = userAgent;
         }
 
         public string tid { get; set; }
@@ -34,7 +36,11 @@ namespace eRede.Service
 
         protected TransactionResponse sendRequest(RestRequest request)
         {
-            var client = new RestClient(new RestClientOptions(getUri()) { UserAgent = eRede.UserAgent })
+            var client = new RestClient(new RestClientOptions(getUri())
+            {
+                //UserAgent = eRede.UserAgent
+                UserAgent = string.IsNullOrEmpty(userAgent) ? eRede.UserAgent : userAgent,
+            })
             {
                 Authenticator = new HttpBasicAuthenticator(store.filliation, store.token)
             };

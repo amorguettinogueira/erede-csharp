@@ -4,7 +4,7 @@ namespace eRede.Service
 {
     internal class GetTransactionService : AbstractTransactionService
     {
-        public GetTransactionService(Store store, Transaction transaction = null) : base(store, transaction)
+        public GetTransactionService(Store store, Transaction transaction = null) : base(store, transaction, null)
         {
         }
 

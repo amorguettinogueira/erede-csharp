@@ -19,9 +19,9 @@ namespace eRede
             return create(transaction);
         }
 
-        public TransactionResponse create(Transaction transaction)
+        public TransactionResponse create(Transaction transaction, string userAgent = null)
         {
-            var createTransactionService = new CreateTransactionService(store, transaction);
+            var createTransactionService = new CreateTransactionService(store, transaction, userAgent);
 
             return createTransactionService.Execute();
         }

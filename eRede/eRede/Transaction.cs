@@ -62,14 +62,14 @@ namespace eRede
         public Transaction AddUrl(string url, string kind = Url.Callback)
         {
             PrepareUrls();
-            urls.Add(new Url {kind = kind, url = url});
+            urls.Add(new Url { kind = kind, url = url });
 
             return this;
         }
 
         public Transaction Iata(string code, string departureTax)
         {
-            iata = new Iata {code = code, departureTax = departureTax};
+            iata = new Iata { code = code, departureTax = departureTax };
 
             return this;
         }
